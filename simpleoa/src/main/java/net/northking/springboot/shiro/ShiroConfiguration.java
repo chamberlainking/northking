@@ -1,5 +1,7 @@
 package net.northking.springboot.shiro;
 
+import net.northking.springboot.util.ShiroConstant;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -28,10 +30,9 @@ public class ShiroConfiguration {
         map.put("/user/login","anon");  // anon 设置为公共资源，authc 请求这个资源需要认证和授权 ,放行要注意anon和authc的顺序
         map.put("/user/regist","anon");
         map.put("/regist.html","anon");
-        map.put("/indax","authc");
 
         //默认认证界面路径
-        shiroFilterFactoryBean.setLoginUrl("/login.html");
+        shiroFilterFactoryBean.setLoginUrl("/index.html");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
         return shiroFilterFactoryBean;
@@ -51,6 +52,13 @@ public class ShiroConfiguration {
     @Bean
     public Realm getRealm(){
         CustomerRealm customerRealm = new CustomerRealm();
+        // 设置密码匹配器
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        // 设置加密方式
+        credentialsMatcher.setHashAlgorithmName(ShiroConstant.HASH_ALGORITHM_NAME.MD5);
+        // 设置散列次数
+        credentialsMatcher.setHashIterations(ShiroConstant.HASH_ITERATORS);
+        customerRealm.setCredentialsMatcher(credentialsMatcher);
         return customerRealm;
     }
 }
