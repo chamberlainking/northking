@@ -13,8 +13,8 @@
         <result column="team_id" property="teamId"/>
     </resultMap>
     <insert id="insert" parameterType="net.northking.springboot.entities.User">
-        insert into user (id,user_id,username,password,role,group_id,team_id)
-        value (#{id},#{userId},#{username},#{password},#{role},#{groupId},#{teamId})
+        insert into user (user_id,username,password,role,group_id,team_id)
+        value (#{userId},#{username},#{password},#{role},#{groupId},#{teamId})
     </insert>
     <select id="verifyUser" parameterType="net.northking.springboot.entities.User" resultMap="User" >
         select id,user_id,username, password,role,group_id,team_id from user
