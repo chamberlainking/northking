@@ -32,19 +32,6 @@ public class LoginController {
     @PostMapping("login")
     @ResponseBody
     public String login(HttpSession session, @RequestParam String username, @RequestParam String password) {
-        /*if ((!StringUtils.isBlank(username)) && (!StringUtils.isBlank(username))) {
-            //Map<String, String> map = new HashMap<>();
-            //map.put("username", username);
-            //map.put("password", password);
-            //String userId = userService.verifyLogin(map);
-            //if (userId != null) {
-            //    session.setAttribute("loginUser", username);
-            //    return "login success";
-            //}
-            return "login success";
-        }
-        return "username or password is wrong";*/
-
         // 获取当前登录用户
         Subject subject = SecurityUtils.getSubject();
         if ((StringUtils.isEmpty(username)) || (StringUtils.isEmpty(password))) {
