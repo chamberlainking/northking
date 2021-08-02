@@ -37,6 +37,6 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
 logging:
   level:
-    com.mengxuegu.springboot.mapper: debug
+    net.northking.springboot.dao: debug
 server:
   port: 8000
