@@ -2,6 +2,7 @@ package net.northking.springboot.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageInfo;
 import net.northking.springboot.dao.InterviewResultFeedbackDao;
 import net.northking.springboot.easyexcel.UploadDataListener;
 import net.northking.springboot.entities.InterviewResultFeedback;
@@ -24,10 +25,10 @@ public class InterviewResultController {
 
     @RequestMapping("find")
     @ResponseBody
-    public String findResult(HttpSession session, @RequestParam String name) {
-        List<InterviewResultFeedback> resultFeedbacks = interviewResultFeedbackService.findResultByUserId(name);
-        String resultList = JSON.toJSONString(resultFeedbacks);
-        return resultList;
+    public PageInfo<InterviewResultFeedback> findResult(HttpSession session, @RequestParam int pageNum, @RequestParam int pageSize) {
+        PageInfo<InterviewResultFeedback> resultByUserId = interviewResultFeedbackService.findResultByUserId(pageNum, pageSize);
+//        String resultList = JSON.toJSONString(resultFeedbacks);
+        return resultByUserId;
     }
 
     /**

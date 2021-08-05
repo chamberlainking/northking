@@ -1,5 +1,6 @@
 package net.northking.springboot.service;
 
+import com.github.pagehelper.PageInfo;
 import net.northking.springboot.entities.InterviewResultFeedback;
 
 import java.util.List;
@@ -10,5 +11,5 @@ public interface InterviewResultFeedbackService {
      * @param userIdList
      * @return
      */
-    List<InterviewResultFeedback> findResultByUserId(String username);
+    PageInfo<InterviewResultFeedback> findResultByUserId(int pageNum, int pageSize);
 }
