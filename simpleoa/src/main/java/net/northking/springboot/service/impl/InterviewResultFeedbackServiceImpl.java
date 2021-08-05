@@ -15,9 +15,4 @@ public class InterviewResultFeedbackServiceImpl implements InterviewResultFeedba
     public List<InterviewResultFeedback> findResultByUserId(String username) {
         return interviewResultFeedbackDao.selectByUserId(username);
     }
-
-    @Override
-    public void insertResult(InterviewResultFeedback interviewResultFeedback) {
-        interviewResultFeedbackDao.insertResult(interviewResultFeedback);
-    }
 }

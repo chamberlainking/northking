@@ -30,15 +30,19 @@
         <result column="remarks" property="remarks"/>
         <result column="user_id" property="userId"/>
     </resultMap>
-    <insert id="insertResult" parameterType="net.northking.springboot.entities.InterviewResultFeedback">
-        insert into interview_result_feedback (name,education,phone,expected_salary,recommended_time,preliminary_screening_interview_time,
-                                               primary_screening_feedback,preliminary_evaluation_salary,direct_employment,customer_name,
-                                               pecommended_position,customer_interview_time,on_site_interview,custome_feedback,hire,employment_salary,
-                                               estimated_entry_time,employment,actual_entry_time,salary_deviation,archive,recommended_hr,remarks,user_id)
-            value (#{name},#{education},#{phone},#{expectedSalary},#{recommendedTime},#{preliminaryScreeningInterviewTime},#{primaryScreeningFeedback},#{preliminaryEvaluationSalary},
-            #{directEmployment},#{customerName},#{pecommendedPosition},#{customerInterviewTime},#{onSiteInterview},#{customeFeedback},#{hire},#{employmentSalary},#{estimatedEntryTime},
-            #{employment},#{actualEntryTime},#{salaryDeviation},#{archive},#{recommendedHr},#{remarks},#{userId})
+    <insert id="insertResult">
+        INSERT INTO interview_result_feedback(name,education,phone,expected_salary,recommended_time,preliminary_screening_interview_time,
+        primary_screening_feedback,preliminary_evaluation_salary,direct_employment,customer_name,
+        pecommended_position,customer_interview_time,on_site_interview,custome_feedback,hire,employment_salary,
+        estimated_entry_time,employment,actual_entry_time,salary_deviation,archive,recommended_hr,remarks,user_id)
+        VALUES
+        <foreach collection="emps" item="emp" separator=",">
+            (#{emp.name},#{emp.education},#{emp.phone},#{emp.expectedSalary},#{emp.recommendedTime},#{emp.preliminaryScreeningInterviewTime},#{emp.primaryScreeningFeedback},#{emp.preliminaryEvaluationSalary},
+            #{emp.directEmployment},#{emp.customerName},#{emp.pecommendedPosition},#{emp.customerInterviewTime},#{emp.onSiteInterview},#{emp.customeFeedback},#{emp.hire},#{emp.employmentSalary},#{emp.estimatedEntryTime},
+            #{emp.employment},#{emp.actualEntryTime},#{emp.salaryDeviation},#{emp.archive},#{emp.recommendedHr},#{emp.remarks},#{emp.userId})
+        </foreach>
     </insert>
+
     <select id="selectByUserId" parameterType="java.lang.String" resultMap="InterviewResultFeedback">
         SELECT * FROM interview_result_feedback WHERE name = #{name}
     </select>
