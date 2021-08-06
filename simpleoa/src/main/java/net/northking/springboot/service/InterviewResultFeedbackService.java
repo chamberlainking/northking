@@ -11,5 +11,7 @@ public interface InterviewResultFeedbackService {
      * @param userIdList
      * @return
      */
-    PageInfo<InterviewResultFeedback> findResultByUserId(int pageNum, int pageSize);
+    PageInfo<InterviewResultFeedback> findResultByUserId(int pageNum, int pageSize,String startTime, String endTime);
+
+    List<InterviewResultFeedback> findDownloadResult(String startTime, String endTime);
 }

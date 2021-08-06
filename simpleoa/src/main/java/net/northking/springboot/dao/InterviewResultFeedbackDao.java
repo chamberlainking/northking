@@ -10,5 +10,5 @@ import java.util.List;
 public interface InterviewResultFeedbackDao {
     void insertResult(@Param("emps") List<InterviewResultFeedback> emps);
 
-    List<InterviewResultFeedback> selectByUserId();
+    List<InterviewResultFeedback> selectByUserId(String startTime, String endTime);
 }

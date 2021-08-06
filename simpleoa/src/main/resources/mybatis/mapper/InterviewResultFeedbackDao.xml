@@ -45,5 +45,13 @@
 
     <select id="selectByUserId" parameterType="java.lang.String" resultMap="InterviewResultFeedback">
         SELECT * FROM interview_result_feedback
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND createTime >= #{startTime}
+            </if>
+            <if test="endTime !=null and endTime != ''">
+                AND createTime &lt;= #{endTime}
+            </if>
+        </where>
     </select>
 </mapper>
