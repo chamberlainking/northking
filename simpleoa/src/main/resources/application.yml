@@ -27,8 +27,16 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
-
     #配置mybatis相关文件路径
+  thymeleaf:
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    check-template: true
+    prefix: classpath:/templates/
+    suffix: .html
+    servlet:
+      content-type: text/html
 mybatis:
   #映射配置文件路径
   mapper-locations: classpath:mybatis/mapper/*.xml
